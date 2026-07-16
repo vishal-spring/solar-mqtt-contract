@@ -392,7 +392,7 @@ site/{siteId}/array/string-all
   "deviceId": "string-all",
   "parentDeviceId": "inv-001",
   "deviceType": "PV_STRING",
-  "status": "DEGRADED",
+  "status": "NONE",
   "dcVoltage": 648.5,
   "dcCurrent": 47.6,
   "dcPower": 30.84
@@ -410,11 +410,8 @@ site/{siteId}/array/string-all
 - `dcPower` in the aggregate message shall be the sum of the DC power of all PV Strings.
 - `dcCurrent` in the aggregate message shall be the total DC input current to the inverter.
 - `dcVoltage` in the aggregate message shall represent the inverter DC input voltage.
-- Aggregate status shall be determined using the following precedence:
-  ```text
-  FAULT > OFFLINE > DEGRADED > HEALTHY
-  ```
-  The highest priority status present among all PV Strings shall be assigned as the aggregate status.
+- `status` in the aggregate message shall always be `NONE`.
+- Individual and aggregate PV Array messages shall be published independently.
 
 ---
 
