@@ -1,96 +1,39 @@
-# Version Information
+# Versioning
 
-| Property | Value |
-|----------|-------|
-| Contract Name | Solar MQTT Communication Contract |
-| Current Version | **v1.0.0** |
-| Status | Initial Release |
-| Release Date | 2026-07-15 |
-| MQTT Version | 5.0 |
-| Payload Format | JSON |
-| Encoding | UTF-8 |
-| QoS | 1 |
-| Retained Messages | Disabled |
-| Clean Start | false |
+This repository follows Semantic Versioning (SemVer).
 
----
+Version format:
 
-## Versioning Policy
+```
+MAJOR.MINOR.PATCH
+```
 
-This contract follows Semantic Versioning (SemVer).
+## Version Components
 
-### Major Version (X.0.0)
+| Component | Description |
+|-----------|-------------|
+| MAJOR | Breaking changes that are not backward compatible. |
+| MINOR | Backward-compatible additions, enhancements or new functionality. |
+| PATCH | Backward-compatible fixes, corrections, documentation updates or clarifications. |
 
-Increment when:
+## Compatibility Policy
 
-- MQTT topic hierarchy changes.
-- Existing payload fields are removed or renamed.
-- Field data types change.
-- Breaking compatibility is introduced.
+- Publisher and Subscriber shall implement the same **MAJOR** version.
+- **MINOR** version differences are supported only when backward compatibility is maintained.
+- **PATCH** version differences are considered fully compatible.
 
-Examples:
+## Payload Version
 
-- Renaming `deviceId` to `id`
-- Changing topic structure
-- Removing mandatory fields
+Every published message shall include:
 
----
+```json
+"schemaVersion": "<contract-version>"
+```
 
-### Minor Version (1.X.0)
+The `schemaVersion` identifies the version of the contract implemented by the Publisher.
 
-Increment when:
+## Current Version
 
-- New optional fields are added.
-- New device types are introduced.
-- New MQTT topics are added.
-- New status or operating mode values are introduced.
-
-Examples:
-
-- Adding EV Charger support
-- Adding Alarm topics
-- Adding optional telemetry fields
-
----
-
-### Patch Version (1.0.X)
-
-Increment when:
-
-- Documentation corrections are made.
-- Typographical errors are fixed.
-- Clarifications are added without changing implementation.
-- Example payloads are updated.
-
-Examples:
-
-- Correcting field descriptions
-- Updating examples
-- Improving wording
-
----
-
-## Compatibility
-
-| Version | Compatibility |
-|----------|---------------|
-| Patch | Fully Compatible |
-| Minor | Backward Compatible |
-| Major | Breaking Changes Possible |
-
----
-
-## Current Release
-
-**v1.0.0**
-
-This release defines the initial communication contract between the Solar Simulator and EMS Receiver covering:
-
-- MQTT communication
-- Topic hierarchy
-- Payload specifications
-- Device telemetry
-- Status definitions
-- Message timing
-- Communication configuration
-- Validation guidelines
+| Version | Status | Date |
+|----------|--------|------|
+| 1.0.0 | Draft | 17-Jul-2026 |
