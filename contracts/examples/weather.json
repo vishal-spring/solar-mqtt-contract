@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "1.0.0",
+  "timestamp": "2026-07-17T10:30:15",
+  "siteId": "site-001",
+  "deviceType": "weather",
+  "deviceId": "weather-001",
+  "status": "ONLINE",
+  "ambientTemperature": 34.6,
+  "moduleTemperature": 48.2,
+  "irradiance": 912.4,
+  "windSpeed": 3.8,
+  "humidity": 61.3,
+  "rainfall": 0.0
+}
