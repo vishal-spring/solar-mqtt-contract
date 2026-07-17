@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "1.0.0",
+  "timestamp": "2026-07-17T10:30:15",
+  "siteId": "site-001",
+  "deviceType": "string",
+  "deviceId": "string-001",
+  "status": "ONLINE",
+  "parentId": "inv-001",
+  "dcVoltage": 621.4,
+  "dcCurrent": 8.25,
+  "dcPower": 5.13
+}
