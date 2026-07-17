@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "1.0.0",
+  "timestamp": "2026-07-17T10:31:42",
+  "siteId": "site-001",
+  "deviceType": "string",
+  "deviceId": "string-001",
+  "status": "FAULT",
+  "faultCode": "DC_OVER_CURRENT"
+}
