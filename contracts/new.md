@@ -151,7 +151,7 @@ site/{siteId}/fault
 
 | Component | Topic Format |
 |----------|--------------|
-| Weather Station | `site/{siteId}/weather/weather` |
+| Weather Station | `site/{siteId}/weather/{weatherId}` |
 | PV String | `site/{siteId}/string/{stringId}` |
 | PV Aggregate | `site/{siteId}/string/string-all` |
 | Battery | `site/{siteId}/battery/{batteryId}` |
@@ -165,7 +165,7 @@ The following device identifiers shall be used.
 
 | Device | Identifier |
 |--------|------------|
-| Weather Station | `weather` |
+| Weather Station | `weather-001` |
 | Smart Hybrid Inverter | `inv-001` |
 | Smart Meter | `meter-001` |
 | PV Aggregate | `string-all` |
@@ -298,7 +298,7 @@ The payload shall contain the following fields.
 ## Topic
 
 ```text
-site/{siteId}/weather/weather
+site/{siteId}/weather/{weatherId}
 ```
 
 ## Payload
