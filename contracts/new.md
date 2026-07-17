@@ -264,20 +264,8 @@ Unless otherwise specified, all devices shall use one or more of the following s
 | DEGRADED | Device is operational but experiencing reduced performance. Applicable only to PV Strings and Batteries. |
 | NONE | Indicates that the status is not applicable. Used only for the aggregate PV topic (`string-all`). |
 
-## Device-specific Status Values
-
-| Device | Supported Status |
-|--------|------------------|
-| Weather Station | ONLINE, OFFLINE |
-| PV String | ONLINE, DEGRADED, OFFLINE, FAULT |
-| PV Aggregate (`string-all`) | NONE |
-| Battery | ONLINE, DEGRADED, OFFLINE, FAULT |
-| Smart Hybrid Inverter | ONLINE, OFFLINE, FAULT |
-| Smart Meter | ONLINE, OFFLINE, FAULT |
-
 ## Notes
 
-- `DEGRADED` represents reduced device performance while the device continues normal operation.
 - `FAULT` indicates an active fault condition and shall be accompanied by a corresponding Fault topic message.
 - `OFFLINE` is determined by the Subscriber when telemetry is not received within the configured offline threshold.
 - The aggregate PV topic (`string-all`) is a logical representation of all PV Strings and therefore always publishes `status = NONE`.
@@ -615,15 +603,13 @@ Supported Status:
 | Term | Description |
 |------|-------------|
 | EMS | Energy Management System |
-| MQTT | Message Queuing Telemetry Transport |
+| MQTT | Message Queuing Telemetry Transport 
 | QoS | Quality of Service |
-| BESS | Battery Energy Storage System |
 | PV | Photovoltaic |
 | DC | Direct Current |
 | AC | Alternating Current |
 | SOC | State of Charge |
 | SOH | State of Health |
-| MPPT | Maximum Power Point Tracking |
 | JSON | JavaScript Object Notation |
 | UTF-8 | Unicode Transformation Format - 8-bit |
 | Telemetry | Periodic operational data published by a device. |
