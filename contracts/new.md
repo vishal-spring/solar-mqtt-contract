@@ -155,8 +155,8 @@ site/{siteId}/fault
 | PV String | `site/{siteId}/string/{stringId}` |
 | PV Aggregate | `site/{siteId}/string/string-all` |
 | Battery | `site/{siteId}/battery/{batteryId}` |
-| Smart Hybrid Inverter | `site/{siteId}/inverter/inverter` |
-| Smart Meter | `site/{siteId}/meter/meter` |
+| Smart Hybrid Inverter | `site/{siteId}/inverter/{inverterId}` |
+| Smart Meter | `site/{siteId}/meter/{meterId}` |
 | Fault | `site/{siteId}/fault` |
 
 ## 5.3 Device Identifier Convention
@@ -166,20 +166,11 @@ The following device identifiers shall be used.
 | Device | Identifier |
 |--------|------------|
 | Weather Station | `weather` |
-| Smart Hybrid Inverter | `inverter` |
-| Smart Meter | `meter` |
+| Smart Hybrid Inverter | `inv-001` |
+| Smart Meter | `meter-001` |
 | PV Aggregate | `string-all` |
 | PV String | `string-001`, `string-002`, ... |
 | Battery | `battery-001`, `battery-002`, ... |
-
-A site shall contain:
-
-- One Weather Station.
-- One Smart Hybrid Inverter.
-- One Smart Meter.
-- One PV Aggregate (`string-all`).
-- One or more PV Strings.
-- Zero or more Batteries.
 
 ## 5.4 Fault Topic
 
@@ -242,7 +233,7 @@ Every device-specific payload shall include the following mandatory fields befor
   "timestamp": "2026-07-17T10:30:15",
   "siteId": "site-001",
   "deviceType": "inverter",
-  "deviceId": "inverter",
+  "deviceId": "inv-001",
   "status": "ONLINE"
 }
 ```
@@ -253,8 +244,6 @@ Every device-specific payload shall include the following mandatory fields befor
 # 7. Common Status Definitions
 
 The `status` field represents the current operational state of the publishing device.
-
-Unless otherwise specified, all devices shall use one or more of the following status values.
 
 | Status | Description |
 |--------|-------------|
@@ -483,7 +472,7 @@ Supported Status:
 ## Topic
 
 ```text
-site/{siteId}/inverter/inverter
+site/{siteId}/inverter/{inverterId}
 ```
 
 ## Payload
@@ -544,7 +533,7 @@ Supported Status:
 ## Topic
 
 ```text
-site/{siteId}/meter/meter
+site/{siteId}/meter/{meterId}
 ```
 
 ## Payload
@@ -604,7 +593,7 @@ Supported Status:
 | Fault Topic | Event-driven MQTT topic used to publish device fault notifications. |
 | Publisher | The Solar Hybrid System Simulator publishing MQTT messages. |
 | Subscriber | The Energy Management System receiving MQTT messages. |
-| Site | A single Commercial Solar Rooftop Hybrid installation containing one inverter, one smart meter, one weather station, and multiple PV Strings and Batteries. |
+| Site | A single Commercial Solar Rooftop Hybrid installation setup. |
 | Device | Any telemetry-producing component within a Site. |
 | Aggregate Topic | A logical MQTT topic representing cumulative measurements from multiple devices (for example, `string-all`). |
 
