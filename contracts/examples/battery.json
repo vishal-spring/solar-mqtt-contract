@@ -3,7 +3,7 @@
   "timestamp": "2026-07-17T10:30:15",
   "siteId": "site-001",
   "deviceType": "battery",
-  "deviceId": "battery-001",
+  "deviceId": "bat-001",
   "status": "ONLINE",
   "parentId": "inv-001",
   "stateOfCharge": 82.5,
