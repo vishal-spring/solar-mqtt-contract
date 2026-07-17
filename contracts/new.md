@@ -170,7 +170,7 @@ The following device identifiers shall be used.
 | Smart Meter | `meter-001` |
 | PV Aggregate | `string-all` |
 | PV String | `string-001`, `string-002`, ... |
-| Battery | `battery-001`, `battery-002`, ... |
+| Battery | `bat-001`, `bat-002`, ... |
 
 ## 5.4 Fault Topic
 
@@ -433,7 +433,7 @@ site/{siteId}/battery/{batteryId}
 Example
 
 ```text
-site/site-001/battery/battery-001
+site/site-001/battery/bat-001
 ```
 
 ## Payload
