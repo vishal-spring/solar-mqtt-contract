@@ -37,7 +37,6 @@ It specifies:
 - Payload examples for all supported topics.
 - Versioning and compatibility guidelines.
 
-This contract is intended to provide a consistent, extensible and implementation-independent interface for all Publisher and Subscriber implementations.
 ---
 
 # 4. MQTT Configuration
