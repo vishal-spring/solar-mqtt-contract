@@ -312,12 +312,6 @@ The payload shall contain the following fields.
 site/{siteId}/weather/weather
 ```
 
-## Description
-
-The Weather Station provides environmental parameters required for monitoring solar generation conditions at the site.
-
-There shall be only one Weather Station per site.
-
 ## Payload
 
 | Field | Type | Unit | Required | Description |
@@ -552,12 +546,6 @@ Supported Status:
 ```text
 site/{siteId}/meter/meter
 ```
-
-## Description
-
-The Smart Meter represents the grid interconnection point of the site.
-
-There shall be exactly one Smart Meter per site.
 
 ## Payload
 
