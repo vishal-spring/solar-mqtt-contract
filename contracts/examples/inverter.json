@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1.0.0",
+  "timestamp": "2026-07-17T10:30:15",
+  "siteId": "site-001",
+  "deviceType": "inverter",
+  "deviceId": "inv-001",
+  "status": "ONLINE",
+  "dcInputVoltage": 621.4,
+  "dcInputCurrent": 24.75,
+  "dcInputPower": 15.39,
+  "batteryVoltage": 51.6,
+  "batteryCurrent": -18.4,
+  "batteryPower": 0.95,
+  "acOutputVoltage": 415.0,
+  "acOutputCurrent": 17.8,
+  "acOutputPower": 12.65,
+  "gridFrequency": 50.02,
+  "efficiency": 95.3,
+  "operatingMode": "SOLAR_CHARGING",
+  "internalTemperature": 43.6,
+  "cumulativeEnergyYield": 28567.42
+}
