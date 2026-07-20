@@ -1,8 +1,10 @@
+Topic : org/org-001/site/site-001/fault
 {
   "schemaVersion": "1.0.0",
-  "timestamp": "2026-07-17T10:31:42",
+  "timestamp": "2026-07-17T10:31:02",
+  "orgId": "org-001",
   "siteId": "site-001",
-  "deviceType": "string",
+  "inverterId": "inv-001",
   "deviceId": "string-001",
   "status": "FAULT",
   "faultCode": "DC_OVER_CURRENT"
