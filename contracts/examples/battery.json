@@ -1,16 +1,17 @@
+Topic : org/org-001/site/site-001/battery/bat-001
 {
   "schemaVersion": "1.0.0",
   "timestamp": "2026-07-17T10:30:15",
+  "orgId": "org-001",
   "siteId": "site-001",
-  "deviceType": "battery",
   "deviceId": "bat-001",
   "status": "ONLINE",
-  "parentId": "inv-001",
-  "stateOfCharge": 82.5,
-  "stateOfHealth": 98.2,
-  "packVoltage": 51.6,
-  "packCurrent": -18.4,
-  "packTemperature": 31.8,
-  "cycleCount": 124,
-  "batteryState": "DISCHARGING"
+  "inverterId": "inv-001",
+  "stateOfCharge": 82,
+  "stateOfHealth": 97,
+  "packVoltage": 512.8,
+  "packCurrent": -21.5,
+  "packTemperature": 31.4,
+  "cycleCount": 684,
+  "batteryState": "CHARGING"
 }
