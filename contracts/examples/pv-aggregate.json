@@ -1,12 +1,13 @@
+Topic : org/org-001/site/site-001/string/string-all
 {
   "schemaVersion": "1.0.0",
   "timestamp": "2026-07-17T10:30:15",
+  "orgId": "org-001",
   "siteId": "site-001",
-  "deviceType": "string",
   "deviceId": "string-all",
   "status": "NONE",
-  "parentId": "inv-001",
-  "dcVoltage": 621.4,
-  "dcCurrent": 24.75,
-  "dcPower": 15.39
+  "inverterId": "inv-001",
+  "dcVoltage": 615.3,
+  "dcCurrent": 74.2,
+  "dcPower": 45.66
 }
