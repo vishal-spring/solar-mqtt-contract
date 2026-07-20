@@ -1,14 +1,15 @@
+Topic : org/org-001/site/site-001/weather/weather-001
 {
   "schemaVersion": "1.0.0",
   "timestamp": "2026-07-17T10:30:15",
+  "orgId": "org-001",
   "siteId": "site-001",
-  "deviceType": "weather",
   "deviceId": "weather-001",
   "status": "ONLINE",
-  "ambientTemperature": 34.6,
-  "moduleTemperature": 48.2,
-  "irradiance": 912.4,
-  "windSpeed": 3.8,
-  "humidity": 61.3,
-  "rainfall": 0.0
+  "ambientTemperature": 32.4,
+  "moduleTemperature": 46.8,
+  "irradiance": 865,
+  "windSpeed": 3.2,
+  "humidity": 58,
+  "rainfall": 0
 }
