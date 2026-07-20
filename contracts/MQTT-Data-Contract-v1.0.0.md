@@ -94,6 +94,8 @@ No explicit communication-loss message shall be published by the Publisher. Devi
 
 ## 4.4 Publish Behaviour
 
+The EMS shall automatically register previously unknown Organizations, Sites and Devices upon receiving valid telemetry for the first time.
+
 Telemetry topics shall be published periodically at the configured publish interval.
 
 The default publish interval is:
@@ -115,12 +117,11 @@ Fault topics shall not be published periodically while a fault remains active.
 
 # 5. MQTT Topic Hierarchy
 
-All MQTT topics shall follow a hierarchical structure based on the Site Identifier and Device Type.
+All MQTT topics shall follow a hierarchical structure based on the Organization, Site and Device Identifiers.
 
 The topic hierarchy is designed to:
 
-- Uniquely identify every device within a site.
-- Support multiple sites using a common MQTT broker.
+- Support multiple organizations using a common MQTT broker.
 - Allow topic-based subscription filtering.
 - Maintain a consistent naming convention across all telemetry and fault topics.
 
@@ -132,31 +133,31 @@ All topic names shall:
 - Use forward slash (`/`) as the hierarchy separator.
 - Use hyphen (`-`) within identifiers where required.
 - Not contain spaces or special characters.
-- Keep device identifiers unique within a site.
+- Keep device identifiers unique only within a site.
 
 General topic format:
 
 ```text
-site/{siteId}/{deviceType}/{deviceId}
+org/{orgId}/site/{siteId}/{deviceType}/{deviceId}
 ```
 
 Fault topic format:
 
 ```text
-site/{siteId}/fault
+org/{orgId}/site/{siteId}/fault
 ```
 
 ## 5.2 Topic Structure
 
 | Component | Topic Format |
 |----------|--------------|
-| Weather Station | `site/{siteId}/weather/{weatherId}` |
-| PV String | `site/{siteId}/string/{stringId}` |
-| PV Aggregate | `site/{siteId}/string/string-all` |
-| Battery | `site/{siteId}/battery/{batteryId}` |
-| Smart Hybrid Inverter | `site/{siteId}/inverter/{inverterId}` |
-| Smart Meter | `site/{siteId}/meter/{meterId}` |
-| Fault | `site/{siteId}/fault` |
+| Weather Station | `org/{orgId}/site/{siteId}/weather/{weatherId}` |
+| PV String | `org/{orgId}/site/{siteId}/string/{stringId}` |
+| PV Aggregate | `org/{orgId}/site/{siteId}/string/string-all` |
+| Battery | `org/{orgId}/site/{siteId}/battery/{batteryId}` |
+| Smart Hybrid Inverter | `org/{orgId}/site/{siteId}/inverter/{inverterId}` |
+| Smart Meter | `org/{orgId}/site/{siteId}/meter/{meterId}` |
+| Fault | `org/{orgId}/site/{siteId}/fault` |
 
 ## 5.3 Device Identifier Convention
 
@@ -171,7 +172,21 @@ The following device identifiers shall be used.
 | PV String | `string-001`, `string-002`, ... |
 | Battery | `bat-001`, `bat-002`, ... |
 
-## 5.4 Fault Topic
+## 5.4 Identifier Scope
+
+Identifier uniqueness shall follow the hierarchy below.
+
+| Identifier | Uniqueness Scope |
+|------------|------------------|
+| orgId | Globally unique |
+| siteId | Unique within an Organization |
+| inverterId | Unique within a Site |
+| weatherId | Unique within a Site |
+| meterId | Unique within a Site |
+| stringId | Unique within an Inverter |
+| batteryId | Unique within an Inverter |
+
+## 5.5 Fault Topic
 
 The Fault topic is an event-driven topic used to notify the Subscriber whenever a device fault is raised or cleared.
 
@@ -189,7 +204,7 @@ Whenever a fault is cleared:
 
 The Fault topic does not replace device telemetry. It is intended solely for communicating fault state transitions.
 
-## 5.5 PV String Fault Handling
+## 5.6 PV String Fault Handling
 
 Faults are applicable only to individual PV Strings.
 
@@ -219,9 +234,9 @@ Every device-specific payload shall include the following mandatory fields befor
 |-------|------|----------|-------------|
 | schemaVersion | String | Yes | Contract version used by the payload. |
 | timestamp | String | Yes | Local timestamp in `yyyy-MM-dd'T'HH:mm:ss` format. |
-| siteId | String | Yes | Unique identifier of the site. |
-| deviceType | String | Yes | Device category publishing the telemetry. |
-| deviceId | String | Yes | Unique identifier of the publishing device. |
+| orgId | String | Yes | Organization identifier. |
+| siteId | String | Yes | Site identifier unique within the organization. |
+| deviceId | String | Yes | Device identifier unique within the site. |
 | status | String | Yes | Current operational status of the device. |
 
 ### Example
@@ -230,8 +245,8 @@ Every device-specific payload shall include the following mandatory fields befor
 {
   "schemaVersion": "1.0.0",
   "timestamp": "2026-07-17T10:30:15",
+  "orgId": "org-001",
   "siteId": "site-001",
-  "deviceType": "inverter",
   "deviceId": "inv-001",
   "status": "ONLINE"
 }
@@ -267,7 +282,7 @@ The Fault topic is published only when a device fault is raised or cleared.
 General Topic Format:
 
 ```text
-site/{siteId}/fault
+org/{orgId}/site/{siteId}/fault
 ```
 
 The payload shall contain the following fields.
@@ -276,8 +291,9 @@ The payload shall contain the following fields.
 |-------|------|----------|-------------|
 | schemaVersion | String | Yes | Contract version used by the payload. |
 | timestamp | String | Yes | Local timestamp in `yyyy-MM-dd'T'HH:mm:ss` format. |
+| orgId | String | Yes | Organization identifier. |
 | siteId | String | Yes | Unique identifier of the site. |
-| deviceType | String | Yes | Device category reporting the fault. |
+| inverterId | String | Yes | Connected inverter identifier. |
 | deviceId | String | Yes | Device identifier reporting the fault. |
 | status | String | Yes | ONLINE or FAULT. |
 | faultCode | String | Yes | Active fault code. `NONE` indicates that the fault has been cleared. |
@@ -289,6 +305,9 @@ The payload shall contain the following fields.
 - A fault message shall be published only when a fault is raised or cleared.
 - Only one active fault code shall be published for a device at any time.
 - When fault is cleared, `faultCode` shall be published as `NONE` and `status` shall be set to `ONLINE`.
+- The `inverterId` field shall always be present.
+- For PV Strings, PV Aggregate and Batteries, it shall contain the associated inverter identifier.
+- For Smart Hybrid Inverters, Smart Meters and Weather Stations, it shall be `NONE`.
 
 ---
 
@@ -297,7 +316,7 @@ The payload shall contain the following fields.
 ## Topic
 
 ```text
-site/{siteId}/weather/{weatherId}
+org/{orgId}/site/{siteId}/weather/{weatherId}
 ```
 
 ## Payload
@@ -332,7 +351,7 @@ The PV Array consists of one aggregate topic (`string-all`) and one or more indi
 
 Each PV String represents an independent DC generation source connected to the inverter.
 
-The aggregate topic represents the combined output of all PV Strings within the site.
+The aggregate topic represents the combined output of all PV Strings connected to an inverter.
 
 ---
 
@@ -341,20 +360,14 @@ The aggregate topic represents the combined output of all PV Strings within the 
 ### Topic
 
 ```text
-site/{siteId}/string/{stringId}
-```
-
-Example
-
-```text
-site/site-001/string/string-001
+org/{orgId}/site/{siteId}/string/{stringId}
 ```
 
 ### Payload
 
 | Field | Type | Unit | Required | Description |
 |------|------|------|----------|-------------|
-| parentId | String | — | Yes | Connected inverter identifier. |
+| inverterId | String | — | Yes | Connected inverter identifier. |
 | dcVoltage | Number | V | Yes | DC output voltage of the string. |
 | dcCurrent | Number | A | Yes | DC output current of the string. |
 | dcPower | Number | kW | Yes | DC output power of the string. |
@@ -384,14 +397,14 @@ Supported Status:
 ### Topic
 
 ```text
-site/{siteId}/string/string-all
+org/{orgId}/site/{siteId}/string/string-all
 ```
 
 ### Payload
 
 | Field | Type | Unit | Required | Description |
 |------|------|------|----------|-------------|
-| parentId | String | — | Yes | Connected inverter identifier. |
+| inverterId | String | — | Yes | Connected inverter identifier. |
 | dcVoltage | Number | V | Yes | Aggregate DC input voltage supplied to the inverter. |
 | dcCurrent | Number | A | Yes | Aggregate DC current from all PV Strings. |
 | dcPower | Number | kW | Yes | Aggregate DC power from all PV Strings. |
@@ -410,8 +423,8 @@ Not Applicable.
 
 ## Notes
 
-- There shall be one or more PV Strings per site.
-- There shall be exactly one aggregate PV topic (`string-all`) per site.
+- There shall be one or more PV Strings connected to an inverter.
+- There shall be exactly one aggregate PV topic (`string-all`) per inverter.
 - Faults apply only to individual PV Strings.
 - The aggregate PV topic shall never publish fault codes.
 - Whenever a PV String fault is raised or cleared:
@@ -423,23 +436,19 @@ Not Applicable.
 
 # 11. Battery
 
+Each Battery shall be associated with exactly one Smart Hybrid Inverter.
+
 ## Topic
 
 ```text
-site/{siteId}/battery/{batteryId}
-```
-
-Example
-
-```text
-site/site-001/battery/bat-001
+org/{orgId}/site/{siteId}/battery/{batteryId}
 ```
 
 ## Payload
 
 | Field | Type | Unit | Required | Description |
 |------|------|------|----------|-------------|
-| parentId | String | — | Yes | Connected inverter identifier. |
+| inverterId | String | — | Yes | Connected inverter identifier. |
 | stateOfCharge | Number | % | Yes | Current battery State of Charge (SOC). |
 | stateOfHealth | Number | % | Yes | Current battery State of Health (SOH). |
 | packVoltage | Number | V | Yes | Battery pack voltage. |
@@ -471,7 +480,7 @@ Supported Status:
 ## Topic
 
 ```text
-site/{siteId}/inverter/{inverterId}
+org/{orgId}/site/{siteId}/inverter/{inverterId}
 ```
 
 ## Payload
@@ -532,7 +541,7 @@ Supported Status:
 ## Topic
 
 ```text
-site/{siteId}/meter/{meterId}
+org/{orgId}/site/{siteId}/meter/{meterId}
 ```
 
 ## Payload
