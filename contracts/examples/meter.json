@@ -1,16 +1,17 @@
+Topic : org/org-001/site/site-001/meter/meter-001
 {
   "schemaVersion": "1.0.0",
   "timestamp": "2026-07-17T10:30:15",
+  "orgId": "org-001",
   "siteId": "site-001",
-  "deviceType": "meter",
   "deviceId": "meter-001",
   "status": "ONLINE",
-  "gridVoltage": 414.8,
-  "gridCurrent": 15.3,
-  "activePower": -2.45,
-  "reactivePower": 0.38,
+  "gridVoltage": 415.2,
+  "gridCurrent": 8.4,
+  "activePower": -6.35,
+  "reactivePower": 0.82,
   "powerFactor": 0.99,
-  "importEnergy": 12456.82,
-  "exportEnergy": 8763.54,
-  "frequency": 50.01
+  "importEnergy": 18456.4,
+  "exportEnergy": 29385.7,
+  "frequency": 50.0
 }
