@@ -36,4 +36,4 @@ The `schemaVersion` identifies the version of the contract implemented by the Pu
 
 | Version | Status | Date |
 |----------|--------|------|
-| 1.0.0 | Draft | 17-Jul-2026 |
+| 1.0.0 | Draft | 20-Jul-2026 |
