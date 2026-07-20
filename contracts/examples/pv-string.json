@@ -1,12 +1,13 @@
+Topic : org/org-001/site/site-001/string/string-001
 {
   "schemaVersion": "1.0.0",
   "timestamp": "2026-07-17T10:30:15",
+  "orgId": "org-001",
   "siteId": "site-001",
-  "deviceType": "string",
   "deviceId": "string-001",
   "status": "ONLINE",
-  "parentId": "inv-001",
-  "dcVoltage": 621.4,
-  "dcCurrent": 8.25,
-  "dcPower": 5.13
+  "inverterId": "inv-001",
+  "dcVoltage": 612.5,
+  "dcCurrent": 18.4,
+  "dcPower": 11.27
 }
