@@ -9,7 +9,7 @@
 | Repository | solar-mqtt-contract |
 | Version | 1.0.0 |
 | Status | Draft |
-| Last Updated | 17 July 2026 |
+| Last Updated | 20 July 2026 |
 
 ---
 
