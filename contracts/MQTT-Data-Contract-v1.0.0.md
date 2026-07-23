@@ -324,7 +324,6 @@ org/{orgId}/site/{siteId}/weather/{weatherId}
 | Field | Type | Unit | Required | Description |
 |------|------|------|----------|-------------|
 | ambientTemperature | Number | °C | Yes | Ambient air temperature. |
-| moduleTemperature | Number | °C | Yes | Solar panel surface temperature. |
 | irradiance | Number | W/m² | Yes | Solar irradiance incident on the PV array. |
 | windSpeed | Number | m/s | Yes | Wind speed. |
 | humidity | Number | % | Yes | Relative humidity. |
@@ -371,6 +370,7 @@ org/{orgId}/site/{siteId}/string/{stringId}
 | dcVoltage | Number | V | Yes | DC output voltage of the string. |
 | dcCurrent | Number | A | Yes | DC output current of the string. |
 | dcPower | Number | kW | Yes | DC output power of the string. |
+| moduleTemperature | Number | °C | Yes | Solar panel surface temperature. |
 
 ### Status
 
@@ -389,6 +389,7 @@ Supported Status:
 - CELL_DEGRADATION
 - DC_OVER_VOLTAGE
 - DC_OVER_CURRENT
+- OVER_TEMPERATURE
 
 ---
 
