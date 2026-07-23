@@ -11,5 +11,5 @@ Topic : org/org-001/site/site-001/weather/weather-001
   "irradiance": 865,
   "windSpeed": 3.2,
   "humidity": 58,
-  "cloudCover": 0.5
+  "cloud_cover": 0.5
 }
