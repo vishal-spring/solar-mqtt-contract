@@ -9,5 +9,6 @@ Topic : org/org-001/site/site-001/string/string-001
   "inverterId": "inv-001",
   "dcVoltage": 612.5,
   "dcCurrent": 18.4,
-  "dcPower": 11.27
+  "dcPower": 11.27,
+  "moduleTemperature": 46.8
 }
