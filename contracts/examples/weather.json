@@ -7,7 +7,6 @@ Topic : org/org-001/site/site-001/weather/weather-001
   "deviceId": "weather-001",
   "status": "ONLINE",
   "ambientTemperature": 32.4,
-  "moduleTemperature": 46.8,
   "irradiance": 865,
   "windSpeed": 3.2,
   "humidity": 58,
