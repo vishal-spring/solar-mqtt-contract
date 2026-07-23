@@ -328,7 +328,7 @@ org/{orgId}/site/{siteId}/weather/{weatherId}
 | irradiance | Number | W/m² | Yes | Solar irradiance incident on the PV array. |
 | windSpeed | Number | m/s | Yes | Wind speed. |
 | humidity | Number | % | Yes | Relative humidity. |
-| cloudCover | Number | Index (0–1) | Yes | Fraction of the sky covered by clouds (0 = clear, 1 = overcast). |
+| cloud_cover | Number | Index (0–1) | Yes | Fraction of the sky covered by clouds (0 = clear, 1 = overcast). |
 
 ## Status
 
