@@ -194,13 +194,13 @@ The Fault topic shall not be published periodically.
 
 Whenever a fault is raised:
 
-- The corresponding device telemetry topic shall be published with its latest telemetry values and `status = FAULT`.
-- The Fault topic shall be published with the corresponding fault code.
+- The corresponding device telemetry topic shall be published with its latest telemetry values. 
+- The Fault topic shall be published with `status = FAULT` and the corresponding fault code.
 
 Whenever a fault is cleared:
 
-- The corresponding device telemetry topic shall be published with its latest telemetry values and `status = ONLINE`.
-- The Fault topic shall be published with `faultCode = NONE`.
+- The corresponding device telemetry topic shall be published with its latest telemetry values.
+- The Fault topic shall be published with `status = ONLINE` and the corresponding fault code.
 
 The Fault topic does not replace device telemetry. It is intended solely for communicating fault state transitions.
 
@@ -214,13 +214,13 @@ Whenever a fault occurs in a PV String:
 
 - The affected PV String telemetry shall be published immediately.
 - The PV Aggregate (`string-all`) telemetry shall also be published immediately to reflect the updated aggregate measurements.
-- A corresponding Fault topic message shall be published.
+- A corresponding Fault topic message shall be published
 
 Whenever the fault is cleared:
 
 - The affected PV String telemetry shall be published immediately with the updated status.
 - The PV Aggregate (`string-all`) telemetry shall be published again.
-- A corresponding Fault topic message shall be published with `faultCode = NONE`.
+- A corresponding Fault topic message shall be published.
 
 ---
 
@@ -296,7 +296,7 @@ The payload shall contain the following fields.
 | inverterId | String | Yes | Connected inverter identifier. |
 | deviceId | String | Yes | Device identifier reporting the fault. |
 | status | String | Yes | ONLINE or FAULT. |
-| faultCode | String | Yes | Active fault code. `NONE` indicates that the fault has been cleared. |
+| faultCode | String | Yes | Active fault code. |
 
 ## Fault Publishing Rules
 
@@ -304,7 +304,7 @@ The payload shall contain the following fields.
 - Fault messages shall not be published periodically.
 - A fault message shall be published only when a fault is raised or cleared.
 - Only one active fault code shall be published for a device at any time.
-- When fault is cleared, `faultCode` shall be published as `NONE` and `status` shall be set to `ONLINE`.
+- When fault is cleared, `faultCode` shall be published and `status` shall be set to `ONLINE`.
 - The `inverterId` field shall always be present.
 - For PV Strings, PV Aggregate and Batteries, it shall contain the associated inverter identifier.
 - For Smart Hybrid Inverters, Smart Meters and Weather Stations, it shall be `NONE`.
